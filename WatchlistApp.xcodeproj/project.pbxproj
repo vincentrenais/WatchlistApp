@@ -9,11 +9,15 @@
 /* Begin PBXBuildFile section */
 		B787DBD61AEEC287002760F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DBD51AEEC287002760F6 /* main.m */; };
 		B787DBD91AEEC287002760F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DBD81AEEC287002760F6 /* AppDelegate.m */; };
-		B787DBDC1AEEC287002760F6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DBDB1AEEC287002760F6 /* ViewController.m */; };
 		B787DBDF1AEEC287002760F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B787DBDD1AEEC287002760F6 /* Main.storyboard */; };
 		B787DBE11AEEC287002760F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B787DBE01AEEC287002760F6 /* Images.xcassets */; };
 		B787DBE41AEEC287002760F6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B787DBE21AEEC287002760F6 /* LaunchScreen.xib */; };
 		B787DBF01AEEC287002760F6 /* WatchlistAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DBEF1AEEC287002760F6 /* WatchlistAppTests.m */; };
+		B787DBFC1AEEC339002760F6 /* MovieManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DBFB1AEEC339002760F6 /* MovieManager.m */; };
+		B787DBFF1AEEC3BD002760F6 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DBFE1AEEC3BD002760F6 /* Movie.m */; };
+		B787DC031AEEC4C7002760F6 /* AddMovieVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DC021AEEC4C7002760F6 /* AddMovieVC.m */; };
+		B787DC061AEEC4F7002760F6 /* WatchlistTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DC051AEEC4F7002760F6 /* WatchlistTVC.m */; };
+		B787DC091AEEC522002760F6 /* IMDBWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DC081AEEC522002760F6 /* IMDBWebVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +36,22 @@
 		B787DBD51AEEC287002760F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B787DBD71AEEC287002760F6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B787DBD81AEEC287002760F6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B787DBDA1AEEC287002760F6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B787DBDB1AEEC287002760F6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B787DBDE1AEEC287002760F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B787DBE01AEEC287002760F6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B787DBE31AEEC287002760F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B787DBE91AEEC287002760F6 /* WatchlistAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatchlistAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B787DBEE1AEEC287002760F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B787DBEF1AEEC287002760F6 /* WatchlistAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WatchlistAppTests.m; sourceTree = "<group>"; };
+		B787DBFA1AEEC339002760F6 /* MovieManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovieManager.h; path = Model/MovieManager.h; sourceTree = "<group>"; };
+		B787DBFB1AEEC339002760F6 /* MovieManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovieManager.m; path = Model/MovieManager.m; sourceTree = "<group>"; };
+		B787DBFD1AEEC3BD002760F6 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Movie.h; path = Model/Movie.h; sourceTree = "<group>"; };
+		B787DBFE1AEEC3BD002760F6 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Movie.m; path = Model/Movie.m; sourceTree = "<group>"; };
+		B787DC011AEEC4C7002760F6 /* AddMovieVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddMovieVC.h; path = Controller/AddMovieVC.h; sourceTree = "<group>"; };
+		B787DC021AEEC4C7002760F6 /* AddMovieVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddMovieVC.m; path = Controller/AddMovieVC.m; sourceTree = "<group>"; };
+		B787DC041AEEC4F7002760F6 /* WatchlistTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WatchlistTVC.h; path = Controller/WatchlistTVC.h; sourceTree = "<group>"; };
+		B787DC051AEEC4F7002760F6 /* WatchlistTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchlistTVC.m; path = Controller/WatchlistTVC.m; sourceTree = "<group>"; };
+		B787DC071AEEC522002760F6 /* IMDBWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMDBWebVC.h; path = Controller/IMDBWebVC.h; sourceTree = "<group>"; };
+		B787DC081AEEC522002760F6 /* IMDBWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMDBWebVC.m; path = Controller/IMDBWebVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +75,8 @@
 		B787DBC71AEEC286002760F6 = {
 			isa = PBXGroup;
 			children = (
+				B787DC001AEEC3C5002760F6 /* Controller */,
+				B787DBF91AEEC319002760F6 /* Model */,
 				B787DBD21AEEC287002760F6 /* WatchlistApp */,
 				B787DBEC1AEEC287002760F6 /* WatchlistAppTests */,
 				B787DBD11AEEC287002760F6 /* Products */,
@@ -83,8 +97,6 @@
 			children = (
 				B787DBD71AEEC287002760F6 /* AppDelegate.h */,
 				B787DBD81AEEC287002760F6 /* AppDelegate.m */,
-				B787DBDA1AEEC287002760F6 /* ViewController.h */,
-				B787DBDB1AEEC287002760F6 /* ViewController.m */,
 				B787DBDD1AEEC287002760F6 /* Main.storyboard */,
 				B787DBE01AEEC287002760F6 /* Images.xcassets */,
 				B787DBE21AEEC287002760F6 /* LaunchScreen.xib */,
@@ -117,6 +129,30 @@
 				B787DBEE1AEEC287002760F6 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B787DBF91AEEC319002760F6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B787DBFA1AEEC339002760F6 /* MovieManager.h */,
+				B787DBFB1AEEC339002760F6 /* MovieManager.m */,
+				B787DBFD1AEEC3BD002760F6 /* Movie.h */,
+				B787DBFE1AEEC3BD002760F6 /* Movie.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		B787DC001AEEC3C5002760F6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B787DC011AEEC4C7002760F6 /* AddMovieVC.h */,
+				B787DC021AEEC4C7002760F6 /* AddMovieVC.m */,
+				B787DC041AEEC4F7002760F6 /* WatchlistTVC.h */,
+				B787DC051AEEC4F7002760F6 /* WatchlistTVC.m */,
+				B787DC071AEEC522002760F6 /* IMDBWebVC.h */,
+				B787DC081AEEC522002760F6 /* IMDBWebVC.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +255,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B787DBDC1AEEC287002760F6 /* ViewController.m in Sources */,
+				B787DBFC1AEEC339002760F6 /* MovieManager.m in Sources */,
+				B787DC091AEEC522002760F6 /* IMDBWebVC.m in Sources */,
+				B787DBFF1AEEC3BD002760F6 /* Movie.m in Sources */,
 				B787DBD91AEEC287002760F6 /* AppDelegate.m in Sources */,
 				B787DBD61AEEC287002760F6 /* main.m in Sources */,
+				B787DC031AEEC4C7002760F6 /* AddMovieVC.m in Sources */,
+				B787DC061AEEC4F7002760F6 /* WatchlistTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

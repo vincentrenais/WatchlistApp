@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  WatchlistTVC.h
 //  WatchlistApp
 //
 //  Created by Vincent Renais on 2015-04-27.
@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MovieManager.h"
 
-@interface ViewController : UIViewController
+@interface WatchlistTVC : UITableViewController
 
 
 @end
-

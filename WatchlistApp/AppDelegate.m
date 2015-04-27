@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "WatchlistTVC.h"
+#import "AddMovieVC.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +18,41 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    // ADD A MOVIE VIEW CONTROLLER
+    
+    AddMovieVC *addMovieVC = [[AddMovieVC alloc]init];
+    
+    addMovieVC.view.backgroundColor = [UIColor whiteColor];
+    
+    // Create a NavigationController for the Add movie View ViewController
+    
+    UINavigationController *addMovieNC = [[UINavigationController alloc]initWithRootViewController:addMovieVC];
+    
+    // TO WATCH TABLE VIEW CONTROLLER
+    
+    // Create a Table ViewController for the movies to watch
+    WatchlistTVC *watchlistTVC = [[WatchlistTVC alloc]initWithStyle:UITableViewStylePlain];
+    
+    // Create a NavigationController for the movies to watch Table ViewController
+    UINavigationController *watchlistNC = [[UINavigationController alloc]initWithRootViewController:watchlistTVC];
+    
+    
+    // Add some data to the drama array (property in the .h file)
+    
+    
+    // Create a tab bar navigation
+    UITabBarController *tabBarNav = [[UITabBarController alloc]init];
+    
+    // Add the ViewControllers to the tab bar
+    tabBarNav.viewControllers = @[watchlistNC, addMovieNC];
+    
+    
+    self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    
+    self.window.rootViewController = tabBarNav;
+    
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
