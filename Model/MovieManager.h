@@ -14,7 +14,10 @@
 + (instancetype)sharedList;
 
 - (void)addMovieToList:(Movie *)movie;
-- (NSArray *)getMovieList;
+
 - (void)deleteMovieFromList:(Movie *)movie;
+
+- (NSArray *)getMovieList;
+
 
 @end

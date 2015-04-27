@@ -60,9 +60,30 @@
     }
 }
 
+
+
+- (void)deleteMovieFromList:(Movie *)movie
+{
+    [self.movieList removeObject:movie];
+    
+    NSMutableArray *arrayOfDictionaries = [[NSMutableArray alloc] init];
+    
+    for (Movie *movie in self.movieList) {
+        NSDictionary *movieDict = @{ @"title" : movie.title,
+                                     @"director" :movie.director};
+        
+        [arrayOfDictionaries addObject:movieDict];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:arrayOfDictionaries forKey:@"movieList"];
+    }
+
+}
+
+
 - (NSArray *)getMovieObjectFromListOfDicts:(NSArray *)listOfDicts
 {
     NSMutableArray *arrayOfMovie = [[NSMutableArray alloc] init];
+    
     for (NSDictionary *dict in listOfDicts)
     {
         Movie *movie = [[Movie alloc] init];
@@ -76,27 +97,6 @@
 - (NSArray *)getMovieList
 {
     return self.movieList;
-}
-
-
-- (void)deleteMovieFromList:(Movie *)movie
-{
-    [self.movieList removeObject:movie];
-    
-    NSDictionary *movieDict = @{ @"title" : movie.title,
-                                 @"director" :movie.director};
-    NSArray *oldList = [[NSUserDefaults standardUserDefaults] objectForKey:@"movieList"];
-    if (oldList)
-    {
-        NSMutableArray *newList = [NSMutableArray arrayWithArray:oldList];
-        [newList addObject:movieDict];
-        [[NSUserDefaults standardUserDefaults] setObject:newList forKey:@"movieList"];
-    }
-    else
-    {
-        NSMutableArray *newList = [[NSMutableArray alloc] initWithObjects:movieDict, nil];
-        [[NSUserDefaults standardUserDefaults] setObject:newList forKey:@"movieList"];
-    }
 }
 
 @end

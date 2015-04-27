@@ -9,6 +9,7 @@
 #import "WatchlistTVC.h"
 #import "IMDBWebVC.h"
 #import "Movie.h"
+
 @interface WatchlistTVC ()
 
 @property (nonatomic, strong) NSArray *movieList;
@@ -128,20 +129,11 @@
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         
-        // Remove the row from data model
+        [[MovieManager sharedList] deleteMovieFromList:self.movieList[indexPath.row]];
         
-        //        [[MovieManager sharedList].movieList removeObjectAtIndex:indexPath.row];
-        //
-        //            [[MovieManager sharedList].movieList removeObjectForKey:@"title"];
-        //            [[MovieManager sharedList].movieList removeObjectForKey:@"director"];
-        
-        
-        // Request table view to reload
-        //[tableView reloadData];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
-        //        [[NSUserDefaults standardUserDefaults] setObject:[MovieManager sharedList].movieList forKey:@"ListOfMovies"];
+
         
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert)
