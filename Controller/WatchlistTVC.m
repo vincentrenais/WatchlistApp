@@ -19,9 +19,8 @@
 
 @implementation WatchlistTVC
 {
-    UISearchController *searchController;
-    NSArray *movies;
-    NSArray *searchResults;
+    UISearchController *_searchController;
+    NSArray *_searchResults;
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -49,21 +48,21 @@
     
     self.movieList = [[MovieManager sharedList] getMovieList];
     
-    searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-    [searchController.searchBar sizeToFit];
-    self.tableView.tableHeaderView = searchController.searchBar;
+    _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    [_searchController.searchBar sizeToFit];
+    self.tableView.tableHeaderView = _searchController.searchBar;
     self.definesPresentationContext = YES;
-    searchController.searchResultsUpdater = self;
-    searchController.dimsBackgroundDuringPresentation = NO;
+    _searchController.searchResultsUpdater = self;
+    _searchController.dimsBackgroundDuringPresentation = NO;
 }
 
 - (void)filterContentForSearchText:(NSString *)searchText
 {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"title contains[c] %@", searchText];
-    searchResults = [movies filteredArrayUsingPredicate:resultPredicate];
+    _searchResults = [self.movieList filteredArrayUsingPredicate:resultPredicate];
 }
 
-- (void) updateSearchResultsForSearchController:(UISearchController *)searchController {
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     [self filterContentForSearchText:searchController.searchBar.text];
     [self.tableView reloadData];
 }
@@ -91,8 +90,8 @@
 {
     
     // Return the number of rows in the section.
-    if (searchController.active) {
-        return searchResults.count;
+    if (_searchController.active) {
+        return _searchResults.count;
     } else
     {
         return  self.movieList.count;
@@ -110,14 +109,15 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
+//    Movie *movie = self.movieList[indexPath.row];
+    
+    
     Movie *movie;
-    
-    if (searchController.active) {
-        movie
+    if (_searchController.active) {
+        movie = [_searchResults objectAtIndex:indexPath.row];
+    } else {
+        movie = self.movieList[indexPath.row];
     }
-    
-    = self.movieList[indexPath.row];
-    
     
     cell.textLabel.text = movie.title;
     cell.detailTextLabel.text = movie.director;
