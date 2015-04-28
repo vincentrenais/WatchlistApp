@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MovieManager.h"
 
-@interface AddMovieVC : UIViewController
+@interface AddMovieVC : UIViewController <UITextFieldDelegate>
 
 @property(strong,nonatomic) UITextField *movieTitleTF;
 @property(strong,nonatomic) UITextField *movieDirectorTF;
