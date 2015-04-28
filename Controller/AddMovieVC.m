@@ -129,11 +129,6 @@
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
 
-    self.movieTitleTF.text = @"";
-    [self.movieTitleTF resignFirstResponder];
-    
-    self.movieDirectorTF.text = @"";
-    [self.movieDirectorTF resignFirstResponder];
 }
 
 // This method is called once we touch outside of the textfield
@@ -158,7 +153,8 @@
 {
     [self.movieTitleTF resignFirstResponder];
     [self.movieDirectorTF resignFirstResponder];
-    return NO;
+    
+    return YES;
 }
 
 // This method adds a movie to the watchlist
@@ -180,7 +176,12 @@
         [[MovieManager sharedList] addMovieToList:movie];
         
         self.movieTitleTF.placeholder = @"Title";
+        self.movieTitleTF.text = @"";
+        [self.movieTitleTF resignFirstResponder];
+        
         self.movieDirectorTF.placeholder = @"Director";
+        self.movieDirectorTF.text = @"";
+        [self.movieDirectorTF resignFirstResponder];
     }
 }
 
