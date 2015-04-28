@@ -114,14 +114,29 @@
     [addMovieButton addTarget:self action:@selector(addMovie) forControlEvents:UIControlEventTouchUpInside];
     
     [addMovieButton addTarget:self action:@selector(textFieldDidEndEditing:) forControlEvents: UIControlEventTouchUpInside];
+ 
     
+    //Text view
+    
+    // Allocates the label and sets its frame
+    self.confirmationLabel = [[UITextView alloc]initWithFrame:CGRectMake(25, 400, 330, 200)];
+    
+    // Sets the font of the label
+    self.confirmationLabel.font = [UIFont fontWithName:@"Helvetica" size:19];
+    
+    // Sets the color or the label
+    self.confirmationLabel.textColor  = [UIColor redColor];
+     
+     // Adds the label to the view
+     [self.view addSubview:self.confirmationLabel];
+
 }
 
 // This method is called once we tap inside the textField
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-
+    self.confirmationLabel.text = @"";
 }
 
 // This method is called once we complete editing
@@ -182,6 +197,9 @@
         self.movieDirectorTF.placeholder = @"Director";
         self.movieDirectorTF.text = @"";
         [self.movieDirectorTF resignFirstResponder];
+        
+        self.confirmationLabel.text = [NSString stringWithFormat:@"%@ was added to the watchlist", movie.title];
+        
     }
 }
 
