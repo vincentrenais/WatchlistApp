@@ -31,7 +31,6 @@
 {
     [super viewDidLoad];
     
-    
     //LABEL
     
     // Allocates the label and sets its frame
@@ -65,6 +64,9 @@
     // Adds the textField to the view
     [self.view addSubview:self.movieTitleTF];
     
+    // Replace Return with Done
+    self.movieTitleTF.returnKeyType = UIReturnKeyDone;
+    
     
     //TEXTFIELD FOR DIRECTOR
     
@@ -83,6 +85,14 @@
     
     // Adds the textField to the view
     [self.view addSubview:self.movieDirectorTF];
+    
+    
+    // Replace Return with Done
+    self.movieDirectorTF.returnKeyType = UIReturnKeyDone;
+    
+    
+    self.movieTitleTF.delegate = self;
+    self.movieDirectorTF.delegate = self;
     
     
     //BUTTON
@@ -106,6 +116,8 @@
     [addMovieButton addTarget:self action:@selector(addMovie) forControlEvents:UIControlEventTouchUpInside];
     
     [addMovieButton addTarget:self action:@selector(textFieldDidEndEditing:) forControlEvents: UIControlEventTouchUpInside];
+    
+    
     
 }
 
@@ -146,9 +158,11 @@
 
 // This method is called once we hit return on the keyboard
 
--(void)textFieldShouldReturn:(UITextField*)textField
+-(BOOL)textFieldShouldReturn:(UITextField*)textField
 {
     [self.movieTitleTF resignFirstResponder];
+    [self.movieDirectorTF resignFirstResponder];
+    return NO;
 }
 
 // This method adds a movie to the watchlist

@@ -18,6 +18,11 @@
 
 
 @implementation WatchlistTVC
+{
+    UISearchController *searchController;
+    NSArray *movies;
+    NSArray *searchResults;
+}
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,6 +48,24 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.movieList = [[MovieManager sharedList] getMovieList];
+    
+    searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    [searchController.searchBar sizeToFit];
+    self.tableView.tableHeaderView = searchController.searchBar;
+    self.definesPresentationContext = YES;
+    searchController.searchResultsUpdater = self;
+    searchController.dimsBackgroundDuringPresentation = NO;
+}
+
+- (void)filterContentForSearchText:(NSString *)searchText
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"title contains[c] %@", searchText];
+    searchResults = [movies filteredArrayUsingPredicate:resultPredicate];
+}
+
+- (void) updateSearchResultsForSearchController:(UISearchController *)searchController {
+    [self filterContentForSearchText:searchController.searchBar.text];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -68,7 +91,12 @@
 {
     
     // Return the number of rows in the section.
-    return  self.movieList.count;
+    if (searchController.active) {
+        return searchResults.count;
+    } else
+    {
+        return  self.movieList.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -82,7 +110,15 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    Movie *movie = self.movieList[indexPath.row];
+    Movie *movie;
+    
+    if (searchController.active) {
+        movie
+    }
+    
+    = self.movieList[indexPath.row];
+    
+    
     cell.textLabel.text = movie.title;
     cell.detailTextLabel.text = movie.director;
     
