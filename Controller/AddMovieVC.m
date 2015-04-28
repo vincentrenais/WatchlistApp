@@ -118,6 +118,7 @@
     [addMovieButton addTarget:self action:@selector(textFieldDidEndEditing:) forControlEvents: UIControlEventTouchUpInside];
  
     
+    
     //Text view
     
     // Allocates the label and sets its frame
