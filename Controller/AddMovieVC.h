@@ -13,6 +13,6 @@
 
 @property(strong,nonatomic) UITextField *movieTitleTF;
 @property(strong,nonatomic) UITextField *movieDirectorTF;
-@property(strong,nonatomic) UITextView *confirmationLabel;
+@property(strong,nonatomic) UITextView *confirmationTV;
 
 @end

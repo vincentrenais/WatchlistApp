@@ -119,16 +119,16 @@
     //Text view
     
     // Allocates the label and sets its frame
-    self.confirmationLabel = [[UITextView alloc]initWithFrame:CGRectMake(25, 400, 330, 200)];
+    self.confirmationTV = [[UITextView alloc]initWithFrame:CGRectMake(25, 400, 330, 200)];
     
     // Sets the font of the label
-    self.confirmationLabel.font = [UIFont fontWithName:@"Helvetica" size:19];
+    self.confirmationTV.font = [UIFont fontWithName:@"Helvetica" size:19];
     
     // Sets the color or the label
-    self.confirmationLabel.textColor  = [UIColor redColor];
+    self.confirmationTV.textColor  = [UIColor redColor];
      
      // Adds the label to the view
-     [self.view addSubview:self.confirmationLabel];
+     [self.view addSubview:self.confirmationTV];
 
 }
 
@@ -136,7 +136,7 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    self.confirmationLabel.text = @"";
+    self.confirmationTV.text = @"";
 }
 
 // This method is called once we complete editing
@@ -198,7 +198,7 @@
         self.movieDirectorTF.text = @"";
         [self.movieDirectorTF resignFirstResponder];
         
-        self.confirmationLabel.text = [NSString stringWithFormat:@"%@ was added to the watchlist", movie.title];
+        self.confirmationTV.text = [NSString stringWithFormat:@"%@ was added to the watchlist", movie.title];
         
     }
 }
