@@ -58,7 +58,7 @@
 
 - (void)filterContentForSearchText:(NSString *)searchText
 {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"title contains[c] %@", searchText];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
     _searchResults = [self.movieList filteredArrayUsingPredicate:resultPredicate];
 }
 

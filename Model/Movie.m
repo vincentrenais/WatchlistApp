@@ -10,4 +10,9 @@
 
 @implementation Movie
 
+- (NSString *)name
+{
+    return [NSString stringWithFormat:@"%@ %@", self.title, self.director];
+}
+
 @end
