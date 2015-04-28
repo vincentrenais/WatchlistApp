@@ -31,6 +31,7 @@
 {
     [super viewDidLoad];
     
+    
     //LABEL
     
     // Allocates the label and sets its frame
@@ -86,14 +87,11 @@
     // Adds the textField to the view
     [self.view addSubview:self.movieDirectorTF];
     
-    
     // Replace Return with Done
     self.movieDirectorTF.returnKeyType = UIReturnKeyDone;
     
-    
     self.movieTitleTF.delegate = self;
     self.movieDirectorTF.delegate = self;
-    
     
     //BUTTON
     
@@ -118,6 +116,19 @@
     [addMovieButton addTarget:self action:@selector(textFieldDidEndEditing:) forControlEvents: UIControlEventTouchUpInside];
     
     
+    //Text view
+    
+    // Allocates the label and sets its frame
+    self.confirmationTV = [[UITextView alloc]initWithFrame:CGRectMake(25, 400, 330, 200)];
+    
+    // Sets the font of the label
+    self.confirmationTV.font = [UIFont fontWithName:@"Helvetica" size:19];
+    
+    // Sets the color or the label
+    self.confirmationTV.textColor  = [UIColor redColor];
+    
+    // Adds the label to the view
+    [self.view addSubview:self.confirmationTV];
     
 }
 
@@ -125,19 +136,14 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-
+    self.confirmationTV.text = @"";
 }
 
 // This method is called once we complete editing
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-
-    self.movieTitleTF.text = @"";
-    [self.movieTitleTF resignFirstResponder];
     
-    self.movieDirectorTF.text = @"";
-    [self.movieDirectorTF resignFirstResponder];
 }
 
 // This method is called once we touch outside of the textfield
@@ -162,7 +168,8 @@
 {
     [self.movieTitleTF resignFirstResponder];
     [self.movieDirectorTF resignFirstResponder];
-    return NO;
+    
+    return YES;
 }
 
 // This method adds a movie to the watchlist
@@ -184,7 +191,15 @@
         [[MovieManager sharedList] addMovieToList:movie];
         
         self.movieTitleTF.placeholder = @"Title";
+        self.movieTitleTF.text = @"";
+        [self.movieTitleTF resignFirstResponder];
+        
         self.movieDirectorTF.placeholder = @"Director";
+        self.movieDirectorTF.text = @"";
+        [self.movieDirectorTF resignFirstResponder];
+        
+        self.confirmationTV.text = [NSString stringWithFormat:@"%@ was added to the watchlist", movie.title];
+        
     }
 }
 
