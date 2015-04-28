@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MovieManager.h"
 
-@interface WatchlistTVC : UITableViewController
+@interface WatchlistTVC : UITableViewController <UISearchResultsUpdating>
 
 
 @end

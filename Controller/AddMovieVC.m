@@ -84,6 +84,8 @@
     // Placeholder text is displayed when no text is typed
     self.movieDirectorTF.placeholder = @"Director";
     
+    self.movieDirectorTF.autocorrectionType = UITextAutocorrectionTypeNo;
+    
     // Adds the textField to the view
     [self.view addSubview:self.movieDirectorTF];
     

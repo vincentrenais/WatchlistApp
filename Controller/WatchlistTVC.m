@@ -18,6 +18,10 @@
 
 
 @implementation WatchlistTVC
+{
+    UISearchController *_searchController;
+    NSArray *_searchResults;
+}
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,6 +47,24 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.movieList = [[MovieManager sharedList] getMovieList];
+    
+    _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    [_searchController.searchBar sizeToFit];
+    self.tableView.tableHeaderView = _searchController.searchBar;
+    self.definesPresentationContext = YES;
+    _searchController.searchResultsUpdater = self;
+    _searchController.dimsBackgroundDuringPresentation = NO;
+}
+
+- (void)filterContentForSearchText:(NSString *)searchText
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+    _searchResults = [self.movieList filteredArrayUsingPredicate:resultPredicate];
+}
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    [self filterContentForSearchText:searchController.searchBar.text];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -68,7 +90,12 @@
 {
     
     // Return the number of rows in the section.
-    return  self.movieList.count;
+    if (_searchController.active) {
+        return _searchResults.count;
+    } else
+    {
+        return  self.movieList.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -82,7 +109,16 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    Movie *movie = self.movieList[indexPath.row];
+//    Movie *movie = self.movieList[indexPath.row];
+    
+    
+    Movie *movie;
+    if (_searchController.active) {
+        movie = [_searchResults objectAtIndex:indexPath.row];
+    } else {
+        movie = self.movieList[indexPath.row];
+    }
+    
     cell.textLabel.text = movie.title;
     cell.detailTextLabel.text = movie.director;
     
