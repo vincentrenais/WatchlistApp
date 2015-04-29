@@ -11,6 +11,14 @@
 @class Movie;
 @interface MovieManager : NSObject
 
+
+@property (strong,nonatomic) NSString *api_key;
+@property (strong,nonatomic) NSString *request_token;
+@property (strong,nonatomic) NSString *username;
+@property (strong,nonatomic) NSString *password;
+
+@property (strong,nonatomic) NSString *requestString;
+
 + (instancetype)sharedList;
 
 - (void)addMovieToList:(Movie *)movie;
