@@ -128,7 +128,7 @@
     self.confirmationTV.font = [UIFont fontWithName:@"Helvetica" size:19];
     
     // Sets the color or the label
-    self.confirmationTV.textColor  = [UIColor redColor];
+    self.confirmationTV.textColor  = [UIColor grayColor];
      
      // Adds the label to the view
      [self.view addSubview:self.confirmationTV];
