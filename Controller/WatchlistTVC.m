@@ -109,9 +109,6 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-//    Movie *movie = self.movieList[indexPath.row];
-    
-    
     Movie *movie;
     if (_searchController.active) {
         movie = [_searchResults objectAtIndex:indexPath.row];
