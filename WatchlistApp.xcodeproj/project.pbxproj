@@ -18,7 +18,6 @@
 		B787DC031AEEC4C7002760F6 /* AddMovieVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DC021AEEC4C7002760F6 /* AddMovieVC.m */; };
 		B787DC061AEEC4F7002760F6 /* WatchlistTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DC051AEEC4F7002760F6 /* WatchlistTVC.m */; };
 		B787DC091AEEC522002760F6 /* IMDBWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DC081AEEC522002760F6 /* IMDBWebVC.m */; };
-		B7CEE39F1AF165AE00CF833D /* MovieDetaislVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B7CEE39E1AF165AE00CF833D /* MovieDetaislVC.m */; };
 		B7CEE3A51AF1785100CF833D /* DiscoverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B7CEE3A41AF1785100CF833D /* DiscoverVC.m */; };
 /* End PBXBuildFile section */
 
@@ -54,8 +53,6 @@
 		B787DC051AEEC4F7002760F6 /* WatchlistTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchlistTVC.m; path = Controller/WatchlistTVC.m; sourceTree = "<group>"; };
 		B787DC071AEEC522002760F6 /* IMDBWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMDBWebVC.h; path = Controller/IMDBWebVC.h; sourceTree = "<group>"; };
 		B787DC081AEEC522002760F6 /* IMDBWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMDBWebVC.m; path = Controller/IMDBWebVC.m; sourceTree = "<group>"; };
-		B7CEE39D1AF165AE00CF833D /* MovieDetaislVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetaislVC.h; sourceTree = "<group>"; };
-		B7CEE39E1AF165AE00CF833D /* MovieDetaislVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetaislVC.m; sourceTree = "<group>"; };
 		B7CEE3A31AF1785100CF833D /* DiscoverVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverVC.h; sourceTree = "<group>"; };
 		B7CEE3A41AF1785100CF833D /* DiscoverVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,8 +154,6 @@
 				B787DC051AEEC4F7002760F6 /* WatchlistTVC.m */,
 				B787DC071AEEC522002760F6 /* IMDBWebVC.h */,
 				B787DC081AEEC522002760F6 /* IMDBWebVC.m */,
-				B7CEE39D1AF165AE00CF833D /* MovieDetaislVC.h */,
-				B7CEE39E1AF165AE00CF833D /* MovieDetaislVC.m */,
 				B7CEE3A31AF1785100CF833D /* DiscoverVC.h */,
 				B7CEE3A41AF1785100CF833D /* DiscoverVC.m */,
 			);
@@ -267,7 +262,6 @@
 			files = (
 				B787DBFC1AEEC339002760F6 /* MovieManager.m in Sources */,
 				B787DC091AEEC522002760F6 /* IMDBWebVC.m in Sources */,
-				B7CEE39F1AF165AE00CF833D /* MovieDetaislVC.m in Sources */,
 				B7CEE3A51AF1785100CF833D /* DiscoverVC.m in Sources */,
 				B787DBFF1AEEC3BD002760F6 /* Movie.m in Sources */,
 				B787DBD91AEEC287002760F6 /* AppDelegate.m in Sources */,

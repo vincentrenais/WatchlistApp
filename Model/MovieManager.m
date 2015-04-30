@@ -9,9 +9,14 @@
 #import "MovieManager.h"
 #import "Movie.h"
 
+#define BASE_URL @"http://api.themoviedb.org/3"
+#define URL(path) [NSString stringWithFormat:@"%@%@",BASE_URL, path]
+#define API_key @"cad549a312eb8c7aa3be5ab77ca14a1f"
+
 @interface MovieManager ()
 
-@property (nonatomic, strong) NSMutableArray *movieList;
+@property (strong, nonatomic) NSMutableArray *movieList;
+@property (strong, nonatomic) NSArray *listOfTitles;
 
 @end
 
@@ -24,6 +29,7 @@
     if (self)
     {
         self.movieList = [[NSMutableArray alloc] init];
+        
     }
     return self;
 }
@@ -60,15 +66,34 @@
     }
 }
 
--(void)requestAPI
+-(void)requestAPIWithOption:(NSInteger)option success:(void (^)(NSArray *array))success failure:(void (^)(NSError *error))failure
 {
      //Do any additional setup after loading the view.
+    NSString *requestUrlString = nil;
+    switch (option)
+    {
+        case 0:
+            requestUrlString = URL(@"/movie/nowPlaying");
+            break;
+        case 1:
+            requestUrlString = URL(@"/movie/upcoming");
+            break;
+        case 2:
+            requestUrlString = URL(@"/movie/popular");
+            break;
+            
+        default:
+            NSLog(@"No URL!");
+            break;
+    }
     
-        self.api_key = @"cad549a312eb8c7aa3be5ab77ca14a1f";
+    NSLog(@"%@",requestUrlString);
     
-        self.requestString = [NSString stringWithFormat:@"http://api.themoviedb.org/3/movie/now_playing?api_key=%@", self.api_key];
+    NSString *URLwithKey = [NSString stringWithFormat:@"%@?api_key=%@",requestUrlString, API_key];
     
-        NSURL *requestURL = [NSURL URLWithString:self.requestString];
+    NSLog(@"%@",URLwithKey);
+    
+        NSURL *requestURL = [NSURL URLWithString:URLwithKey];
     
         NSURLSession *session = [NSURLSession sharedSession];
     
@@ -77,21 +102,28 @@
               //handle errors
               NSError *e = nil;
               NSDictionary *movieJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&e];
-//              NSLog(@"%@",movieJSON);
+              
               if (!error)
               {
                   NSArray *results = [movieJSON objectForKey:@"results"];
                   
                   for (NSDictionary *resultDict in results)
                   {
-                      NSArray *listOfTitles = [resultDict objectForKey:@"title"];
-                      
-                      NSLog(@"%@",listOfTitles);
+                      self.listOfTitles = [resultDict objectForKey:@"title"];
+                      NSLog(@"%@",self.listOfTitles);
+                  }
+                  if (success)
+                  {
+                      success(self.listOfTitles);
+                      return;
                   }
               }
-              
+              else
+              {
+                 failure(e);
+                  return;
+              }
           } ]resume];
-        sleep(60);
 }
 
 

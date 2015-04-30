@@ -9,12 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @class Movie;
+
 @interface MovieManager : NSObject
-
-
-@property (strong,nonatomic) NSString *api_key;
-
-@property (strong,nonatomic) NSString *requestString;
 
 + (instancetype)sharedList;
 
@@ -24,7 +20,6 @@
 
 - (NSArray *)getMovieList;
 
--(void)requestAPI;
-
+-(void)requestAPIWithOption:(NSInteger)option success:(void (^)(NSArray *array))success failure:(void (^)(NSError *error))failure;
 
 @end

@@ -1,3 +1,4 @@
+
 //
 //  DiscoverVC.m
 //  WatchlistApp
@@ -9,6 +10,8 @@
 #import "DiscoverVC.h"
 
 @interface DiscoverVC ()
+
+@property (strong,nonatomic) UITableView *listOfMovies;
 
 @end
 
@@ -37,7 +40,10 @@
     [segmentedControl addTarget:self action:@selector(SegmentControlActions:) forControlEvents: UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 0;
     [self.view addSubview:segmentedControl];
-    // Do any additional setup after loading the view.
+
+    
+    self.listOfMovies = [[UITableView alloc]initWithFrame:CGRectMake(15, 110, 330, 490)];
+    [self.view addSubview:self.listOfMovies];
 }
 
 -(void)SegmentControlActions:(UISegmentedControl *)segment
@@ -46,43 +52,38 @@
     {
         case 0:
         {
-            //action for the first button
-            [self nowPlaying];
-            [[MovieManager sharedList] requestAPI] ;
+            [self listOfMovies:0];
             break;
         }
         case 1:
         {
-            //action for the second button
-            [self upcoming];
+            [self listOfMovies:1];
+
             break;
         }
         case 2:
         {
-            //action for the third button
-            [self popular];
+            [self listOfMovies:2];
             break;
         }
     }
 }
 
--(void)nowPlaying
+
+-(void)listOfMovies:(NSInteger)option
 {
-    UITableView *nowPlaying = [[UITableView alloc]initWithFrame:CGRectMake(15, 110, 330, 490)];
-    [self.view addSubview:nowPlaying];
+    [[MovieManager sharedList] requestAPIWithOption:option success:^(NSArray *array)
+     {
+         NSLog(@"%@",array);
+         [self.listOfMovies reloadData];
+     
+     } failure:^(NSError *error)
+     {
+         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"alert" message:@"It didn't work!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"ok", nil];
+         [alert show];
+     }];
 }
 
--(void)upcoming
-{
-    UITableView *upcoming = [[UITableView alloc]initWithFrame:CGRectMake(15, 110, 330, 490)];
-    [self.view addSubview:upcoming];
-}
-
--(void)popular
-{
-    UITableView *popular = [[UITableView alloc]initWithFrame:CGRectMake(15, 110, 330, 490)];
-    [self.view addSubview:popular];
-}
 
 - (void)didReceiveMemoryWarning
 {
