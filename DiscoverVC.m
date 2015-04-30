@@ -13,9 +13,13 @@
 
 @property (strong,nonatomic) UITableView *listOfMovies;
 
+
 @end
 
 @implementation DiscoverVC
+{
+    NSArray *finalList;
+}
 
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -74,7 +78,10 @@
 {
     [[MovieManager sharedList] requestAPIWithOption:option success:^(NSArray *array)
      {
-         NSLog(@"%@",array);
+
+         finalList = [[NSArray alloc]init];
+         finalList = array;
+         NSLog(@"%@",finalList);
          [self.listOfMovies reloadData];
      
      } failure:^(NSError *error)
@@ -101,7 +108,7 @@
 {
     
     // Return the number of rows in the section.
-    return 5;
+    return finalList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -114,11 +121,11 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
+
     
-//    cell.textLabel.text = movie.title;
-//    
-//    cell.detailTextLabel.text = movie.director;
-//    
+    
+    cell.textLabel.text = [finalList objectAtIndex:indexPath.row];
+  
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:19];
