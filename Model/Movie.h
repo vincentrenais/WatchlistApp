@@ -13,6 +13,6 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *director;
 
-- (NSString *)name;
+- (NSString *)titlesDirectors;
 
 @end

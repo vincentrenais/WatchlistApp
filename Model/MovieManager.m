@@ -60,6 +60,39 @@
     }
 }
 
+-(void)requestAPI
+{
+     //Do any additional setup after loading the view.
+    
+        self.api_key = @"cad549a312eb8c7aa3be5ab77ca14a1f";
+    
+        self.requestString = [NSString stringWithFormat:@"http://api.themoviedb.org/3/movie/now_playing?api_key=%@", self.api_key];
+    
+        NSURL *requestURL = [NSURL URLWithString:self.requestString];
+    
+        NSURLSession *session = [NSURLSession sharedSession];
+    
+        [[session dataTaskWithURL:requestURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+          {
+              //handle errors
+              NSError *e = nil;
+              NSDictionary *movieJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&e];
+//              NSLog(@"%@",movieJSON);
+              if (!error)
+              {
+                  NSArray *results = [movieJSON objectForKey:@"results"];
+                  
+                  for (NSDictionary *resultDict in results)
+                  {
+                      NSArray *listOfTitles = [resultDict objectForKey:@"title"];
+                      
+                      NSLog(@"%@",listOfTitles);
+                  }
+              }
+              
+          } ]resume];
+        sleep(60);
+}
 
 
 - (void)deleteMovieFromList:(Movie *)movie
@@ -98,5 +131,7 @@
 {
     return self.movieList;
 }
+
+
 
 @end

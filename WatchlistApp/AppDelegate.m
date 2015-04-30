@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "WatchlistTVC.h"
 #import "AddMovieVC.h"
+#import "DiscoverVC.h"
 
 @interface AppDelegate ()
 
@@ -18,7 +19,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // ADD A MOVIE VIEW CONTROLLER
+    
+    // WATCHLIST TABLE VIEW CONTROLLER
+    
+    // Create a Table ViewController for the movies to watch
+    WatchlistTVC *watchlistTVC = [[WatchlistTVC alloc]initWithStyle:UITableViewStylePlain];
+    
+    // Create a NavigationController for the movies to watch Table ViewController
+    UINavigationController *watchlistNC = [[UINavigationController alloc]initWithRootViewController:watchlistTVC];
+    
+    
+    // ADD-A-MOVIE VIEW CONTROLLER
     
     AddMovieVC *addMovieVC = [[AddMovieVC alloc]init];
     
@@ -28,23 +39,21 @@
     
     UINavigationController *addMovieNC = [[UINavigationController alloc]initWithRootViewController:addMovieVC];
     
-    // TO WATCH TABLE VIEW CONTROLLER
     
-    // Create a Table ViewController for the movies to watch
-    WatchlistTVC *watchlistTVC = [[WatchlistTVC alloc]initWithStyle:UITableViewStylePlain];
+    // SUGGESTIONS VIEW CONTROLLER
     
-    // Create a NavigationController for the movies to watch Table ViewController
-    UINavigationController *watchlistNC = [[UINavigationController alloc]initWithRootViewController:watchlistTVC];
+    DiscoverVC *discoverVC = [[DiscoverVC alloc]init];
     
+    discoverVC.view.backgroundColor = [UIColor whiteColor];
     
-    // Add some data to the drama array (property in the .h file)
+    UINavigationController *discoverNC = [[UINavigationController alloc]initWithRootViewController:discoverVC];
     
     
     // Create a tab bar navigation
     UITabBarController *tabBarNav = [[UITabBarController alloc]init];
     
     // Add the ViewControllers to the tab bar
-    tabBarNav.viewControllers = @[watchlistNC, addMovieNC];
+    tabBarNav.viewControllers = @[discoverNC, watchlistNC, addMovieNC];
     
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];

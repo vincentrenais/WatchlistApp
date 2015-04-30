@@ -10,7 +10,7 @@
 
 @implementation Movie
 
-- (NSString *)name
+- (NSString *)titlesDirectors
 {
     return [NSString stringWithFormat:@"%@ %@", self.title, self.director];
 }
