@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B71DDF4D1AF3FBF4009421E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B71DDF4C1AF3FBF4009421E9 /* Images.xcassets */; };
 		B787DBD61AEEC287002760F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DBD51AEEC287002760F6 /* main.m */; };
 		B787DBD91AEEC287002760F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DBD81AEEC287002760F6 /* AppDelegate.m */; };
 		B787DBDF1AEEC287002760F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B787DBDD1AEEC287002760F6 /* Main.storyboard */; };
-		B787DBE11AEEC287002760F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B787DBE01AEEC287002760F6 /* Images.xcassets */; };
 		B787DBE41AEEC287002760F6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B787DBE21AEEC287002760F6 /* LaunchScreen.xib */; };
 		B787DBF01AEEC287002760F6 /* WatchlistAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DBEF1AEEC287002760F6 /* WatchlistAppTests.m */; };
 		B787DBFC1AEEC339002760F6 /* MovieManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DBFB1AEEC339002760F6 /* MovieManager.m */; };
@@ -32,13 +32,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B71DDF4C1AF3FBF4009421E9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../../../.Trash/Images.xcassets; sourceTree = "<group>"; };
 		B787DBD01AEEC287002760F6 /* WatchlistApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchlistApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B787DBD41AEEC287002760F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B787DBD51AEEC287002760F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B787DBD71AEEC287002760F6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B787DBD81AEEC287002760F6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B787DBDE1AEEC287002760F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B787DBE01AEEC287002760F6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B787DBE31AEEC287002760F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B787DBE91AEEC287002760F6 /* WatchlistAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatchlistAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B787DBEE1AEEC287002760F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,8 +101,8 @@
 				B787DBD71AEEC287002760F6 /* AppDelegate.h */,
 				B787DBD81AEEC287002760F6 /* AppDelegate.m */,
 				B787DBDD1AEEC287002760F6 /* Main.storyboard */,
-				B787DBE01AEEC287002760F6 /* Images.xcassets */,
 				B787DBE21AEEC287002760F6 /* LaunchScreen.xib */,
+				B71DDF4C1AF3FBF4009421E9 /* Images.xcassets */,
 				B787DBD31AEEC287002760F6 /* Supporting Files */,
 			);
 			path = WatchlistApp;
@@ -241,9 +241,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B71DDF4D1AF3FBF4009421E9 /* Images.xcassets in Resources */,
 				B787DBDF1AEEC287002760F6 /* Main.storyboard in Resources */,
 				B787DBE41AEEC287002760F6 /* LaunchScreen.xib in Resources */,
-				B787DBE11AEEC287002760F6 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

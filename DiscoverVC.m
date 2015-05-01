@@ -29,7 +29,6 @@
     {
         self.title = @"Discover";
         self.tabBarItem.image = [UIImage imageNamed:@"tab_icon_discover"];
-        [self listOfMovies:0];
     }
     return self;
 }
@@ -51,6 +50,12 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self listOfMovies:0];
 }
 
 -(void)SegmentControlActions:(UISegmentedControl *)segment
@@ -75,19 +80,17 @@
     }
 }
 
-
 -(void)listOfMovies:(NSInteger)option
 {
+    __weak typeof(self) weakSelf = self;
     [[MovieManager sharedList] requestAPIWithOption:option success:^(NSMutableArray *array)
      {
-
-         _finalList = [[NSArray alloc]init];
-
-         _finalList = [array copy];
-
+         _finalList = array;
          
-         [self.tableView reloadData];
-     
+         [weakSelf.tableView reloadData];
+         
+         NSLog(@"%@",_finalList);
+         
      } failure:^(NSError *error)
      {
          UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"alert" message:@"It didn't work!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"ok", nil];
@@ -126,7 +129,6 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    
     cell.textLabel.text = [_finalList objectAtIndex:indexPath.row];
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:19];
 

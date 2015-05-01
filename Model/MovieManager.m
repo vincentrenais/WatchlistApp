@@ -89,44 +89,108 @@
     
 
     
-    NSString *URLwithKey = [NSString stringWithFormat:@"%@?api_key=%@",requestUrlString, API_key];
     
-        NSURL *requestURL = [NSURL URLWithString:URLwithKey];
+//    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?api_key=%@",requestUrlString, API_key]];
+//    
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+//    [request setHTTPMethod:@"GET"];
+//    
+//    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//    
+//    NSURLSession *session = [NSURLSession sharedSession];
+//    
+//    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+//                                            completionHandler:
+//                                  ^(NSData *data, NSURLResponse *response, NSError *error)
+//    {
+//                                      
+//                                      if (error) {
+//                                          // Handle error...
+//                                          return;
+//                                      }
+//        
+//                                      NSError *e = nil;
+//                                      NSDictionary *movieJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&e];
+//
+//                                      if ([response isKindOfClass:[NSHTTPURLResponse class]])
+//                                      {
+//                                          
+//                                          NSArray *results = [movieJSON objectForKey:@"results"];
+//                                          self.listOfTitles = [[NSMutableArray alloc]init];
+//                                          
+//                                          for (NSDictionary *dicts in results)
+//                                          {
+//                                              
+//                                              [self.listOfTitles addObject:[dicts objectForKey:@"title"]];
+//                                          }
+//                                          if (success)
+//                                          {
+//                                              success(self.listOfTitles);
+//                                              
+//                                              return;
+//                                          }
+//                                      }
+//                                      else
+//                                      {
+//                                          failure(e);
+//                                          return;
+//                                      }
+//        
+//    }];
+//    
+//    [task resume];
+//}
 
-        NSURLSession *session = [NSURLSession sharedSession];
     
-        [[session dataTaskWithURL:requestURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-          {
-              //handle errors
-              NSError *e = nil;
-              NSDictionary *movieJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&e];
 
-              if (!error)
-              {
-                  NSArray *results = [movieJSON objectForKey:@"results"];
-                  self.listOfTitles = [[NSMutableArray alloc]init];
-                
-                  for (NSDictionary *dicts in results){
-                  
-                      [self.listOfTitles addObject:[dicts objectForKey:@"title"]];
 
-                  }
-                
-                  if (success)
-                  {
-                      success(self.listOfTitles);
-                      
-                      return;
-                  }
-              }
-              else
-              {
-                 failure(e);
-                  return;
-              }
+
+NSString *URLwithKey = [NSString stringWithFormat:@"%@?api_key=%@",requestUrlString, API_key];
+
+NSURL *requestURL = [NSURL URLWithString:URLwithKey];
+
+NSURLSession *session = [NSURLSession sharedSession];
+
+[[session dataTaskWithURL:requestURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+  {
+      //handle errors
+      NSError *e = nil;
+      NSDictionary *movieJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&e];
+      
+      if (!error)
+      {
+          NSArray *results = [movieJSON objectForKey:@"results"];
+          
+          self.listOfTitles = [[NSMutableArray alloc]init];
+          
+          for (NSDictionary *dicts in results){
+              
+              [self.listOfTitles addObject:[dicts objectForKey:@"title"]];
+              
           }
-         ]resume];
-    
+          
+          if (success)
+          {
+              dispatch_sync(dispatch_get_main_queue(), ^{
+                  success(self.listOfTitles);
+              });
+              
+              return;
+          }
+      }
+      else
+      {
+          if (failure)
+          {
+              dispatch_sync(dispatch_get_main_queue(), ^{
+                  success(self.listOfTitles);
+              });
+          }
+          failure(e);
+          return;
+      }
+  }
+  ]resume];
 }
 
 
@@ -137,7 +201,8 @@
     
     NSMutableArray *arrayOfDictionaries = [[NSMutableArray alloc] init];
     
-    for (Movie *movie in self.movieList) {
+    for (Movie *movie in self.movieList)
+    {
         NSDictionary *movieDict = @{ @"title" : movie.title,
                                      @"director" :movie.director};
         
