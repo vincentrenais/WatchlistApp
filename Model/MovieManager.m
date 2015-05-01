@@ -16,7 +16,8 @@
 @interface MovieManager ()
 
 @property (strong, nonatomic) NSMutableArray *movieList;
-@property (strong, nonatomic) NSMutableArray *listOfTitles;
+@property (strong, nonatomic) NSMutableArray *listOfMovies;
+@property (strong, nonatomic) NSMutableDictionary *movieDict;
 
 @end
 
@@ -88,63 +89,6 @@
     }
     
 
-    
-    
-//    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?api_key=%@",requestUrlString, API_key]];
-//    
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-//    [request setHTTPMethod:@"GET"];
-//    
-//    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-//    
-//    NSURLSession *session = [NSURLSession sharedSession];
-//    
-//    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-//                                            completionHandler:
-//                                  ^(NSData *data, NSURLResponse *response, NSError *error)
-//    {
-//                                      
-//                                      if (error) {
-//                                          // Handle error...
-//                                          return;
-//                                      }
-//        
-//                                      NSError *e = nil;
-//                                      NSDictionary *movieJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&e];
-//
-//                                      if ([response isKindOfClass:[NSHTTPURLResponse class]])
-//                                      {
-//                                          
-//                                          NSArray *results = [movieJSON objectForKey:@"results"];
-//                                          self.listOfTitles = [[NSMutableArray alloc]init];
-//                                          
-//                                          for (NSDictionary *dicts in results)
-//                                          {
-//                                              
-//                                              [self.listOfTitles addObject:[dicts objectForKey:@"title"]];
-//                                          }
-//                                          if (success)
-//                                          {
-//                                              success(self.listOfTitles);
-//                                              
-//                                              return;
-//                                          }
-//                                      }
-//                                      else
-//                                      {
-//                                          failure(e);
-//                                          return;
-//                                      }
-//        
-//    }];
-//    
-//    [task resume];
-//}
-
-    
-
-
-
 NSString *URLwithKey = [NSString stringWithFormat:@"%@?api_key=%@",requestUrlString, API_key];
 
 NSURL *requestURL = [NSURL URLWithString:URLwithKey];
@@ -160,19 +104,24 @@ NSURLSession *session = [NSURLSession sharedSession];
       if (!error)
       {
           NSArray *results = [movieJSON objectForKey:@"results"];
-          
-          self.listOfTitles = [[NSMutableArray alloc]init];
+
+          self.listOfMovies = [[NSMutableArray alloc]init];
+          self.movieDict = [[NSMutableDictionary alloc]init];
           
           for (NSDictionary *dicts in results){
               
-              [self.listOfTitles addObject:[dicts objectForKey:@"title"]];
+              
+              
+              [self.movieDict setObject:@"title" forKey:@"title"];
+              [self.movieDict setObject:@"image_path" forKey:@"poster"];
+              
+              [self.listOfMovies addObject:self.movieDict];
               
           }
-          
           if (success)
           {
               dispatch_sync(dispatch_get_main_queue(), ^{
-                  success(self.listOfTitles);
+                  success(self.listOfMovies);
               });
               
               return;
@@ -183,7 +132,7 @@ NSURLSession *session = [NSURLSession sharedSession];
           if (failure)
           {
               dispatch_sync(dispatch_get_main_queue(), ^{
-                  success(self.listOfTitles);
+                  success(self.listOfMovies);
               });
           }
           failure(e);
