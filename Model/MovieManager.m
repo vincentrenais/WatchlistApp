@@ -16,7 +16,7 @@
 @interface MovieManager ()
 
 @property (strong, nonatomic) NSMutableArray *movieList;
-@property (strong, nonatomic) NSArray *listOfTitles;
+@property (strong, nonatomic) NSMutableArray *listOfTitles;
 
 @end
 
@@ -66,14 +66,14 @@
     }
 }
 
--(void)requestAPIWithOption:(NSInteger)option success:(void (^)(NSArray *array))success failure:(void (^)(NSError *error))failure
+-(void)requestAPIWithOption:(NSInteger)option success:(void (^)(NSMutableArray *array))success failure:(void (^)(NSError *error))failure
 {
      //Do any additional setup after loading the view.
     NSString *requestUrlString = nil;
     switch (option)
     {
         case 0:
-            requestUrlString = URL(@"/movie/nowPlaying");
+            requestUrlString = URL(@"/movie/now_playing");
             break;
         case 1:
             requestUrlString = URL(@"/movie/upcoming");
@@ -87,14 +87,14 @@
             break;
     }
     
-    NSLog(@"%@",requestUrlString);
+
     
     NSString *URLwithKey = [NSString stringWithFormat:@"%@?api_key=%@",requestUrlString, API_key];
     
-    NSLog(@"%@",URLwithKey);
+
     
         NSURL *requestURL = [NSURL URLWithString:URLwithKey];
-    
+
         NSURLSession *session = [NSURLSession sharedSession];
     
         [[session dataTaskWithURL:requestURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
@@ -102,19 +102,22 @@
               //handle errors
               NSError *e = nil;
               NSDictionary *movieJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&e];
-              
+
               if (!error)
               {
                   NSArray *results = [movieJSON objectForKey:@"results"];
+                  self.listOfTitles = [[NSMutableArray alloc]init];
+                
+                  for (NSDictionary *dicts in results){
                   
-                  for (NSDictionary *resultDict in results)
-                  {
-                      self.listOfTitles = [resultDict objectForKey:@"title"];
-                      NSLog(@"%@",self.listOfTitles);
+                      [self.listOfTitles addObject:[dicts objectForKey:@"title"]];
+
                   }
+                
                   if (success)
                   {
                       success(self.listOfTitles);
+                      
                       return;
                   }
               }
@@ -123,8 +126,11 @@
                  failure(e);
                   return;
               }
-          } ]resume];
+          }
+         ]resume];
+    
 }
+
 
 
 - (void)deleteMovieFromList:(Movie *)movie

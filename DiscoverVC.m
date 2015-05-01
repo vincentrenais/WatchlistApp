@@ -11,14 +11,14 @@
 
 @interface DiscoverVC ()
 
-@property (strong,nonatomic) UITableView *listOfMovies;
+@property (strong,nonatomic) UITableView *tableView;
 
 
 @end
 
 @implementation DiscoverVC
 {
-    NSArray *finalList;
+    NSArray *_finalList;
 }
 
 
@@ -29,6 +29,7 @@
     {
         self.title = @"Discover";
         self.tabBarItem.image = [UIImage imageNamed:@"tab_icon_discover"];
+        [self listOfMovies:0];
     }
     return self;
 }
@@ -44,10 +45,12 @@
     [segmentedControl addTarget:self action:@selector(SegmentControlActions:) forControlEvents: UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 0;
     [self.view addSubview:segmentedControl];
-
     
-    self.listOfMovies = [[UITableView alloc]initWithFrame:CGRectMake(15, 110, 330, 490)];
-    [self.view addSubview:self.listOfMovies];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(15, 110, 330, 490)];
+    [self.view addSubview:self.tableView];
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
 }
 
 -(void)SegmentControlActions:(UISegmentedControl *)segment
@@ -76,13 +79,16 @@
 
 -(void)listOfMovies:(NSInteger)option
 {
-    [[MovieManager sharedList] requestAPIWithOption:option success:^(NSArray *array)
+    [[MovieManager sharedList] requestAPIWithOption:option success:^(NSMutableArray *array)
      {
 
-         finalList = [[NSArray alloc]init];
-         finalList = array;
-         NSLog(@"%@",finalList);
-         [self.listOfMovies reloadData];
+         _finalList = [[NSArray alloc]init];
+
+         _finalList = [array copy];
+        
+         NSLog(@"%@",_finalList);
+         
+         [self.tableView reloadData];
      
      } failure:^(NSError *error)
      {
@@ -108,7 +114,8 @@
 {
     
     // Return the number of rows in the section.
-    return finalList.count;
+    return _finalList.count;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -122,17 +129,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
 
-    
-    
-    cell.textLabel.text = [finalList objectAtIndex:indexPath.row];
-  
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:19];
-    
-    cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:15];
-    
-    cell.detailTextLabel.textColor = [UIColor grayColor];
+    cell.textLabel.text = [_finalList objectAtIndex:indexPath.row];
     
     return cell;
 }

@@ -20,6 +20,6 @@
 
 - (NSArray *)getMovieList;
 
--(void)requestAPIWithOption:(NSInteger)option success:(void (^)(NSArray *array))success failure:(void (^)(NSError *error))failure;
+-(void)requestAPIWithOption:(NSInteger)option success:(void (^)(NSMutableArray *array))success failure:(void (^)(NSError *error))failure;
 
 @end
