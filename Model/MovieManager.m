@@ -114,18 +114,26 @@
                 
                   if (success)
                   {
-                      success(self.listOfTitles);
+                      dispatch_sync(dispatch_get_main_queue(), ^{
+                          success(self.listOfTitles);
+                      });
                       
                       return;
                   }
               }
               else
               {
-                 failure(e);
+                  if (failure)
+                  {
+                      dispatch_sync(dispatch_get_main_queue(), ^{
+                          success(self.listOfTitles);
+                      });
+                  }
+                  failure(e);
                   return;
               }
           }
-         ]resume];
+          ]resume];
     
 }
 

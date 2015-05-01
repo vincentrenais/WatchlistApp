@@ -78,15 +78,15 @@
 
 -(void)listOfMovies:(NSInteger)option
 {
+    __weak typeof(self) weakSelf = self;
+    
     [[MovieManager sharedList] requestAPIWithOption:option success:^(NSMutableArray *array)
+     
      {
-
-         _finalList = [[NSArray alloc]init];
-
-         _finalList = [array copy];
-
          
-         [self.tableView reloadData];
+         _finalList = array;
+         
+         [weakSelf.tableView reloadData];
      
      } failure:^(NSError *error)
      {
