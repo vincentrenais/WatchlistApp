@@ -85,8 +85,7 @@
          _finalList = [[NSArray alloc]init];
 
          _finalList = [array copy];
-        
-         NSLog(@"%@",_finalList);
+
          
          [self.tableView reloadData];
      
@@ -127,10 +126,11 @@
     if (cell == nil)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        
     }
-
-    cell.textLabel.text = [_finalList objectAtIndex:indexPath.row];
     
+    [cell.textLabel setText:[_finalList objectAtIndex:indexPath.row]];
+
     return cell;
 }
 
