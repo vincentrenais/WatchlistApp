@@ -129,7 +129,13 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [_finalList objectAtIndex:indexPath.row];
+    
+    NSDictionary *tempDict = [_finalList objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = [tempDict objectForKey:@"title"];
+    
+    cell.detailTextLabel.text = [tempDict objectForKey:@"posterPath"];
+    
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:19];
 
     return cell;

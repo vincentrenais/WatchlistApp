@@ -104,20 +104,34 @@ NSURLSession *session = [NSURLSession sharedSession];
       if (!error)
       {
           NSArray *results = [movieJSON objectForKey:@"results"];
-
-          self.listOfMovies = [[NSMutableArray alloc]init];
-          self.movieDict = [[NSMutableDictionary alloc]init];
           
-          for (NSDictionary *dicts in results){
+          NSLog(@"%@",results);
+          
+          self.listOfMovies = [[NSMutableArray alloc]init];
+//          self.movieDict = [[NSMutableDictionary alloc]init];
+          
+          for (NSDictionary *dicts in results)
+          {
+              NSString *title = dicts[@"title"];
+//              if ([title isEqual:[NSNull null]])
+//              {
+//                  title = nil;
+//              }
+              NSString *posterPath = dicts[@"poster_path"];
               
-              
-              
-              [self.movieDict setObject:@"title" forKey:@"title"];
-              [self.movieDict setObject:@"image_path" forKey:@"poster"];
-              
-              [self.listOfMovies addObject:self.movieDict];
-              
+              NSDictionary *dict = @{ @"title" : title,
+                                      @"posterPath" : posterPath};
+
+              [self.listOfMovies addObject:dict];
+//              [self.movieDict setObject:[dicts objectForKey:@"title"] forKey:@"title"];
+//              
+//              [self.movieDict setObject:[dicts objectForKey:@"poster_path"] forKey:@"poster"];
+//             
+//              [self.listOfMovies addObject:self.movieDict];
           }
+          
+          NSLog(@"%@",self.listOfMovies);
+          
           if (success)
           {
               dispatch_sync(dispatch_get_main_queue(), ^{
