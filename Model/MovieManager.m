@@ -91,8 +91,6 @@
     
     NSString *URLwithKey = [NSString stringWithFormat:@"%@?api_key=%@",requestUrlString, API_key];
     
-
-    
         NSURL *requestURL = [NSURL URLWithString:URLwithKey];
 
         NSURLSession *session = [NSURLSession sharedSession];

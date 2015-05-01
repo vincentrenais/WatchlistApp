@@ -41,12 +41,12 @@
     NSArray *itemArray = [NSArray arrayWithObjects: @"Now Playing", @"Upcoming", @"Popular", nil];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:itemArray];
     
-    segmentedControl.frame = CGRectMake(25, 80, 325, 30);
+    segmentedControl.frame = CGRectMake(25, 85, 325, 30);
     [segmentedControl addTarget:self action:@selector(SegmentControlActions:) forControlEvents: UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 0;
     [self.view addSubview:segmentedControl];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(15, 110, 330, 490)];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(15, 125, 330, 490)];
     [self.view addSubview:self.tableView];
     
     self.tableView.dataSource = self;
@@ -65,7 +65,6 @@
         case 1:
         {
             [self listOfMovies:1];
-
             break;
         }
         case 2:
@@ -126,10 +125,10 @@
     if (cell == nil)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        
     }
     
-    [cell.textLabel setText:[_finalList objectAtIndex:indexPath.row]];
+    cell.textLabel.text = [_finalList objectAtIndex:indexPath.row];
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:19];
 
     return cell;
 }
