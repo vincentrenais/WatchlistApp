@@ -123,11 +123,6 @@ NSURLSession *session = [NSURLSession sharedSession];
                                       @"posterPath" : posterPath};
 
               [self.listOfMovies addObject:dict];
-//              [self.movieDict setObject:[dicts objectForKey:@"title"] forKey:@"title"];
-//              
-//              [self.movieDict setObject:[dicts objectForKey:@"poster_path"] forKey:@"poster"];
-//             
-//              [self.listOfMovies addObject:self.movieDict];
           }
           
           NSLog(@"%@",self.listOfMovies);

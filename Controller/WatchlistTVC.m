@@ -35,6 +35,8 @@
 }
 
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -56,21 +58,34 @@
     _searchController.dimsBackgroundDuringPresentation = NO;
 }
 
+
+
+
 - (void)filterContentForSearchText:(NSString *)searchText
 {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"titlesDirectors contains[c] %@", searchText];
     _searchResults = [self.movieList filteredArrayUsingPredicate:resultPredicate];
 }
 
+
+
+
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     [self filterContentForSearchText:searchController.searchBar.text];
     [self.tableView reloadData];
 }
 
+
+
+
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [self.tableView reloadData];
 }
+
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -79,12 +94,17 @@
 }
 
 
+
+
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    
     // Return the number of sections.
     return 1;
 }
+
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -97,6 +117,10 @@
         return  self.movieList.count;
     }
 }
+
+
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -129,6 +153,9 @@
     
     return cell;
 }
+
+
+
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
