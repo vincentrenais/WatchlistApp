@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B71DDF4D1AF3FBF4009421E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B71DDF4C1AF3FBF4009421E9 /* Images.xcassets */; };
 		B787DBD61AEEC287002760F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DBD51AEEC287002760F6 /* main.m */; };
 		B787DBD91AEEC287002760F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DBD81AEEC287002760F6 /* AppDelegate.m */; };
 		B787DBDF1AEEC287002760F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B787DBDD1AEEC287002760F6 /* Main.storyboard */; };
@@ -18,6 +17,7 @@
 		B787DC031AEEC4C7002760F6 /* AddMovieVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DC021AEEC4C7002760F6 /* AddMovieVC.m */; };
 		B787DC061AEEC4F7002760F6 /* WatchlistTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DC051AEEC4F7002760F6 /* WatchlistTVC.m */; };
 		B787DC091AEEC522002760F6 /* IMDBWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B787DC081AEEC522002760F6 /* IMDBWebVC.m */; };
+		B7C48DDE1AF5AEBF000F2FB9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7C48DDD1AF5AEBF000F2FB9 /* Images.xcassets */; };
 		B7CEE3A51AF1785100CF833D /* DiscoverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B7CEE3A41AF1785100CF833D /* DiscoverVC.m */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +32,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B71DDF4C1AF3FBF4009421E9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../../../.Trash/Images.xcassets; sourceTree = "<group>"; };
 		B787DBD01AEEC287002760F6 /* WatchlistApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchlistApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B787DBD41AEEC287002760F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B787DBD51AEEC287002760F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -53,6 +52,7 @@
 		B787DC051AEEC4F7002760F6 /* WatchlistTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchlistTVC.m; path = Controller/WatchlistTVC.m; sourceTree = "<group>"; };
 		B787DC071AEEC522002760F6 /* IMDBWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMDBWebVC.h; path = Controller/IMDBWebVC.h; sourceTree = "<group>"; };
 		B787DC081AEEC522002760F6 /* IMDBWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IMDBWebVC.m; path = Controller/IMDBWebVC.m; sourceTree = "<group>"; };
+		B7C48DDD1AF5AEBF000F2FB9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B7CEE3A31AF1785100CF833D /* DiscoverVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverVC.h; sourceTree = "<group>"; };
 		B7CEE3A41AF1785100CF833D /* DiscoverVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,7 +102,7 @@
 				B787DBD81AEEC287002760F6 /* AppDelegate.m */,
 				B787DBDD1AEEC287002760F6 /* Main.storyboard */,
 				B787DBE21AEEC287002760F6 /* LaunchScreen.xib */,
-				B71DDF4C1AF3FBF4009421E9 /* Images.xcassets */,
+				B7C48DDD1AF5AEBF000F2FB9 /* Images.xcassets */,
 				B787DBD31AEEC287002760F6 /* Supporting Files */,
 			);
 			path = WatchlistApp;
@@ -241,7 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B71DDF4D1AF3FBF4009421E9 /* Images.xcassets in Resources */,
+				B7C48DDE1AF5AEBF000F2FB9 /* Images.xcassets in Resources */,
 				B787DBDF1AEEC287002760F6 /* Main.storyboard in Resources */,
 				B787DBE41AEEC287002760F6 /* LaunchScreen.xib in Resources */,
 			);
