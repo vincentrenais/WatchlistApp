@@ -9,16 +9,17 @@
 
 #import "DiscoverVC.h"
 
-@interface DiscoverVC ()
-
-@property (strong,nonatomic) UITableView *tableView;
-
-
-@end
+//@interface DiscoverVC ()
+//
+////@property (strong,nonatomic) UITableView *tableView;
+//
+//
+//@end
 
 @implementation DiscoverVC
 {
     NSArray *_finalList;
+    UITableView *_tableView;
 }
 
 
@@ -46,11 +47,11 @@
     segmentedControl.selectedSegmentIndex = 0;
     [self.view addSubview:segmentedControl];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(15, 125, 330, 490)];
-    [self.view addSubview:self.tableView];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(15, 125, 330, 490)];
+    [self.view addSubview:_tableView];
     
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
 }
 
 -(void)SegmentControlActions:(UISegmentedControl *)segment
@@ -78,7 +79,7 @@
 
 -(void)listOfMovies:(NSInteger)option
 {
-    __weak typeof(self) weakSelf = self;
+//    __weak typeof(self) weakSelf = self;
     
     [[MovieManager sharedList] requestAPIWithOption:option success:^(NSMutableArray *array)
      
@@ -86,8 +87,10 @@
          
          _finalList = array;
          
-         [weakSelf.tableView reloadData];
-     
+//         [weakSelf.tableView reloadData];
+         
+         [_tableView reloadData];
+         
      } failure:^(NSError *error)
      {
          UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"alert" message:@"It didn't work!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"ok", nil];

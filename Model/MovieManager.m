@@ -118,7 +118,7 @@
                           success(self.listOfTitles);
                       });
                       
-                      return;
+//                      return;
                   }
               }
               else
@@ -130,7 +130,7 @@
                       });
                   }
                   failure(e);
-                  return;
+//                  return;
               }
           }
           ]resume];
